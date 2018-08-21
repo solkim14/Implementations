@@ -5,7 +5,7 @@
 * each unsorted element is swapped one by one with all smaller left adjacent sorted element (if applicable) until each element is sorted
 * into its inorder place 
 *
-* Complexity: O(N^2)
+* Complexity: O(n^2)
 * Good For: When an array is mostly sorted (better than Quick Sort in this situation!)
 * But: Insertion Sort is slow (but faster than Selection Sort) and it's almost always better to use a faster sorting algorithm like Quick Sort or Merge Sort
 *
@@ -13,3 +13,23 @@
 * @version 1.0
 * @since 8/20/18
 */
+
+public class InsertionSort {
+	public static void main(String[] args) {
+		int[] testArray = {2, 1, 800, 4};
+		
+		if(testArray.length<=1) {
+			for(int element : testArray) {System.out.print(element + " ");}
+		} else {
+			//loop all elements of array (starting at 1 going up)
+			for(int i=1; i<testArray.length; i++) {
+				//loop all previous elements (starting at 0 going backwards)
+				for(int j=i-1; j>=0; j--) {
+					System.out.println(i + ", " + j); //test to make sure correct pairs are being checked
+					//if previous element is greater swap
+					//else break
+				}
+			}
+		}
+	}
+}
