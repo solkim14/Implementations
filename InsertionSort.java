@@ -1,9 +1,8 @@
 /**
 * Insertion Sort
 *
-* Algorithm loops through each element of the array, sorted elements on the left and unsorted on the right of the "iterative pointer"
-* each unsorted element is swapped one by one with all smaller left adjacent sorted element (if applicable) until each element is sorted
-* into its inorder place 
+* Algorithm loops through each element of the array, sorted elements on the left side of the 'i' position of the array and unsorted on the right.
+* Each unsorted element is swapped one by one with all smaller left adjacent sorted element (if applicable) until each element is sorted into correct position
 *
 * Complexity: O(n^2)
 * Good For: When an array is mostly sorted (better than Quick Sort in this situation!)
@@ -29,23 +28,18 @@ public class InsertionSort {
 	public static void main(String[] args) {
 		int[] testArray = {2, 3, 4000, 1, 800, 4, 0};
 		
-		if(testArray.length<=1) {
+		if(testArray.length<=1) { //if array is size 1 or less no need to sort
 			printLoop(testArray);
 		} else {
-			//loop all elements of array (starting at 1 going up)
-			for(int i=1; i<testArray.length; i++) {
-				//loop all previous elements (starting at 0 going backwards) WAT THIS DOESNT MAKE SENSE >8O
+			for(int i=1; i<testArray.length; i++) { //element to sort
 				int currentElement = testArray[i];
-				for(int j=i-1; j>=0; j--) {
-					//System.out.println(i + ", " + j); //test to make sure correct pairs are being checked
-					//if previous element is greater swap
+				for(int j=i-1; j>=0; j--) { //previous elements to sort against
 					if(testArray[i] < testArray[j]) {
 						int temp = testArray[i];
 						testArray[i] = testArray[j];
 						testArray[j] = temp;
 						i--;
-						//printLoop(testArray); //test to make sure swaps are happening
-					} else {//else break
+					} else {// element has been put in its proper sorted position: break
 						break;
 					}
 				}
