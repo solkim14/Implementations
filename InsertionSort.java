@@ -16,7 +16,7 @@
 
 public class InsertionSort {
 	public static void main(String[] args) {
-		int[] testArray = {2, 1, 800, 4};
+		int[] testArray = {2, 3, 4000, 1, 800, 4, 0};
 		
 		if(testArray.length<=1) {
 			for(int element : testArray) {System.out.print(element + " ");}
@@ -24,12 +24,23 @@ public class InsertionSort {
 			//loop all elements of array (starting at 1 going up)
 			for(int i=1; i<testArray.length; i++) {
 				//loop all previous elements (starting at 0 going backwards)
+				int currentElement = testArray[i];
 				for(int j=i-1; j>=0; j--) {
-					System.out.println(i + ", " + j); //test to make sure correct pairs are being checked
+					//System.out.println(i + ", " + j); //test to make sure correct pairs are being checked
 					//if previous element is greater swap
-					//else break
+					if(testArray[i] < testArray[j]) {
+						int temp = testArray[i];
+						testArray[i] = testArray[j];
+						testArray[j] = temp;
+						i--;
+						for(int element : testArray) {System.out.print(element + " ");} //test to make sure swaps are happening
+						System.out.println();
+					} else {//else break
+						break;
+					}
 				}
 			}
 		}
+		for(int element : testArray) {System.out.print(element + " ");} //print sorted array
 	}
 }
