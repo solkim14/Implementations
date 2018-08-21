@@ -16,9 +16,9 @@
 */
 
 public class SelectionSort {
-	private static int[] testArray = {4,2,1000,3}; //change as needed
-
 	public static void main(String[] args) {
+		int[] testArray = {4,2,1000,3}; //change as needed
+		
 		for(int i=0; i<testArray.length-1; i++) {
 			for(int j=i+1; j<testArray.length; j++) {
 				if (testArray[i] > testArray[j]) { //swap if currentSmallest is bigger than the element it is being compared to
