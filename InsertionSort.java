@@ -15,15 +15,26 @@
 */
 
 public class InsertionSort {
+	/**
+	* Loops through a given array and prints out its contents
+	*
+	* @param the array to print
+	* @return none
+	*/
+	private static void printLoop(int[] arrayToPrint) {
+		for(int element : arrayToPrint) {System.out.print(element + " ");}
+		System.out.println();
+	}
+
 	public static void main(String[] args) {
 		int[] testArray = {2, 3, 4000, 1, 800, 4, 0};
 		
 		if(testArray.length<=1) {
-			for(int element : testArray) {System.out.print(element + " ");}
+			printLoop(testArray);
 		} else {
 			//loop all elements of array (starting at 1 going up)
 			for(int i=1; i<testArray.length; i++) {
-				//loop all previous elements (starting at 0 going backwards)
+				//loop all previous elements (starting at 0 going backwards) WAT THIS DOESNT MAKE SENSE >8O
 				int currentElement = testArray[i];
 				for(int j=i-1; j>=0; j--) {
 					//System.out.println(i + ", " + j); //test to make sure correct pairs are being checked
@@ -33,14 +44,13 @@ public class InsertionSort {
 						testArray[i] = testArray[j];
 						testArray[j] = temp;
 						i--;
-						for(int element : testArray) {System.out.print(element + " ");} //test to make sure swaps are happening
-						System.out.println();
+						//printLoop(testArray); //test to make sure swaps are happening
 					} else {//else break
 						break;
 					}
 				}
 			}
+		printLoop(testArray); //print sorted array
 		}
-		for(int element : testArray) {System.out.print(element + " ");} //print sorted array
 	}
 }
