@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
 * Binary Search
 *
@@ -33,43 +35,45 @@ public class BinarySearch {
 		int elementPosition = -1; //default: -1 means element was not found in the array
 		int startPosition = 0;
 		int endPosition = arrayToSearch.length - 1;
-		int midpoint = arrayToSearch.length/2;
-		System.out.println("starting midpoint element: " + arrayToSearch[midpoint]);
 		
 		while(startPosition <= endPosition) { //while there are still elements to explore
-			//if midpoint is equal
-			if(arrayToSearch[midpoint] == elementToFind) {
-				//set position to current position
-				System.out.println("element found!");
+			int midpoint = (startPosition + endPosition)/2; //find new midpoint
+		
+			if(arrayToSearch[midpoint] == elementToFind) { //found the element
 				elementPosition = midpoint;
 				break;
-				//break
-			} else if (arrayToSearch[midpoint] > elementToFind) {//else if midpoint is larger
-				//limit search to first half
-				//move down end position
-				System.out.println("search first half");
+			} else if (arrayToSearch[midpoint] > elementToFind) {//element is before the midpoint
 				endPosition = midpoint-1;
-				System.out.println("new ending element: " + arrayToSearch[endPosition]);
-			} else { //else midpoint is smaller
-				System.out.println("search second half");
-			//limit search to second half
-				//move up start position
+			} else { //element is after the midpoint
 				startPosition = midpoint+1;
-				System.out.println("new starting element: " + arrayToSearch[startPosition]);
 			}
-			
-			//calculate midpoint
-			midpoint = (startPosition + endPosition)/2;
-			System.out.println("midpoint element: " + arrayToSearch[midpoint]); //test to ensure correct midpoint is calculated
 		}
 		return elementPosition;
 	}
 	
 	public static void main(String[] args) {
 		int[] testArray = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
-		int elementToFind = 1;
+		int elementToFind = 0;
 		
-		int position = binarySearchI(elementToFind, testArray);
-		System.out.print("The Position of " + elementToFind + " in the array is " + position);
+		Scanner scanner = new Scanner(System.in);;
+		try {
+		    System.out.println("Enter an integer to find and we will return its position in our array (if applicable): ");
+		    elementToFind = scanner.nextInt();
+		    int position = binarySearchI(elementToFind, testArray);
+    		
+    		if (position != -1) {
+    		    System.out.print("The Position of " + elementToFind + " in the array is " + position);
+    		} else {
+    		    System.out.print("The array does not contain " + elementToFind);
+    		}
+		} /**catch (InputMismatchException imEx) {
+		    System.out.println("You did not enter an integer! Please enter an integer to continue: ");
+		} catch (NoSuchElementException nseEx) {
+		    nseEx.printStackTrace();
+		} catch (IllegalStateException isEx) {
+		    isEx.printStackTrace();
+		} */ finally {
+            scanner.close();
+		}
 	}
 }
