@@ -87,7 +87,7 @@ public class MyArrayList {
 	* @param none
 	* @return none
 	*/
-	private void resize() {
+	private void resize() { //look into copyof array function
 		Object[] tempArray = new Object[objectArray.length*2];
 		for(int i=0; i<objectArray.length; i++) { //copy contents of objectArray into tempArray
 			tempArray[i] = objectArray[i];
