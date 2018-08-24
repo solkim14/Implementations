@@ -12,6 +12,8 @@
 */
 
 public class MyArrayList {
+	private Object[] objectArray = new Object[10];
+	private int lastObjectIndex = 0;
 	
 	/**
 	* adds an element to the ArrayList
@@ -20,6 +22,15 @@ public class MyArrayList {
 	* @return none
 	*/
 	private void add(Object element) {
+		System.out.println("added object!");
+		
+		if(lastObjectIndex == objectArray.length) { //check if array is out of space
+			System.out.println("size is" + objectArray.length);
+			resize();
+			System.out.println("new size is" + objectArray.length);
+		}
+		//insert object at the end of the array
+		objectArray[lastObjectIndex++] = element;
 		return;
 	}
 	
@@ -30,8 +41,12 @@ public class MyArrayList {
 	* @return element the element at the given index
 	*/
 	private Object get(int index) {
-		Object dummy = new Object();
-		return dummy;
+		System.out.println("got object!");
+		
+		if(index < 0 || index > objectArray.length-1) { //check to make sure index is valid
+			System.out.println("not valid!");
+		}
+		return objectArray[index];
 	}
 	
 	/**
@@ -41,10 +56,19 @@ public class MyArrayList {
 	* @return element element removed from the ArrayList
 	*/
 	private Object remove(int index) {
-		Object dummy = new Object();
-		return dummy;
+		System.out.println("removed object!");
+		if(index < 0 || index > objectArray.length-1) { //check to make sure index is valid
+			System.out.println("not valid!");
+		}
+		//remove object
+		Object objectRemoved = objectArray[index];
+		//shift all the stuff over
+		for(int i=index+1; i<objectArray.length; i++) {
+			objectArray[i-1] = objectArray[i];
+		}
+		lastObjectIndex--;
+		return objectRemoved;
 	}
-	
 
 	/**
 	* returns the size of the ArrayList
@@ -53,16 +77,30 @@ public class MyArrayList {
 	* @return size size of the ArrayList
 	*/
 	private int size() {
-		int size = 0;
-		return size;
+		System.out.println("got size");
+		return lastObjectIndex;
+	}
+	
+	/**
+	* doubles the size of the array to accomodate growing array size
+	*
+	* @param none
+	* @return none
+	*/
+	private void resize() {
+		Object[] tempArray = new Object[objectArray.length*2];
+		for(int i=0; i<objectArray.length; i++) { //copy contents of objectArray into tempArray
+			tempArray[i] = objectArray[i];
+		}
+		objectArray = tempArray;
 	}
 	
 	public static void main(String[] args) {
 		MyArrayList myArrayList = new MyArrayList();
 		
 		myArrayList.add("whoo");
-		myArrayList.get(1);
-		myArrayList.remove(1);
-		myArrayList.size();
+		System.out.println(myArrayList.get(0));
+		System.out.println(myArrayList.remove(0));
+		System.out.println(myArrayList.size());
 	}
 }
