@@ -73,6 +73,23 @@ public class SinglyLinkedList {
 		System.out.println(list.getNode(3));
 		System.out.println(list.getNode(4));
 		*/
+		
+		//tested addNode()
+		list.addNode(-1, new Node(100));
+		list.display();
+		System.out.println("size = " + list.size());
+		list.addNode(0, new Node(200));
+		list.display();
+		System.out.println("size = " + list.size());
+		list.addNode(1, new Node(300));
+		list.display();
+		System.out.println("size = " + list.size());
+		list.addNode(2, new Node(400));
+		list.display();
+		System.out.println("size = " + list.size());
+		list.addNode(3, new Node(500));
+		list.display();
+		System.out.println("size = " + list.size());
 	}
 	
 	/**
@@ -231,10 +248,47 @@ public class SinglyLinkedList {
 	* Adds a node to the given index. If index does not exist prints "INDEX DOES NOT EXIST": O(n)
 	*
 	* @param index the index of the node to be added
+	* @param node the node to be added
 	* @return none
 	*/
-	public void addNode(int index) {
-		
+	public void addNode(int index, Node node) {		
+		if (index < 0) { //if index is negative then it doesn't exist
+			System.out.println("Can't add! That index doesn't exist!");
+		} else if (index == 0) {
+			addFirst(node);
+			System.out.println("adding first");
+		} else { //index > 0 //ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ NEED TO FIX THIS
+			int counter = 0;
+			Node prev = tail;
+			Node current = head;
+			
+			if ((head==null && tail==null) && (head.next != head)) { //if linked list is greater than 1 element
+				prev = head;
+				current = prev.next;
+				counter++;
+				
+				//find the node at the given index by iterating through linked list
+				while (current != head) {
+					if (counter == index) { //found it
+						break;
+					}
+					prev = current;
+					current = prev.next;
+					counter++;
+				}
+				
+				if (index > counter) {
+					System.out.println("Index too large! There are only " + counter + " nodes in the linked list.");
+					return;
+				} else { //insert node
+					node.next = current;
+					prev.next = node;
+				}
+			} else { //if linked list is empty or 1 element
+				System.out.println("Index too large! There are only " + counter + " nodes in the linked list.");
+			}
+		}
+		return;
 	}
 	
 	/**
