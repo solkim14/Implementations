@@ -17,6 +17,15 @@ public class SinglyLinkedList {
 	public static void main(String[] args) {
 		SinglyLinkedList list = new SinglyLinkedList();
 		
+		
+		//testing addNode()
+		System.out.println("size = " + list.size());
+		list.addNode(1, new Node(6000));
+		list.display();
+		list.addNode(0, new Node(800));
+		list.display();
+		
+		
 		//tested addFirst and display
 		list.addFirst(new Node(20));
 		list.display();
@@ -87,7 +96,7 @@ public class SinglyLinkedList {
 		list.addNode(2, new Node(400));
 		list.display();
 		System.out.println("size = " + list.size());
-		list.addNode(3, new Node(500));
+		list.addNode(8, new Node(500));
 		list.display();
 		System.out.println("size = " + list.size());
 	}
@@ -256,13 +265,12 @@ public class SinglyLinkedList {
 			System.out.println("Can't add! That index doesn't exist!");
 		} else if (index == 0) {
 			addFirst(node);
-			System.out.println("adding first");
 		} else { //index > 0 //ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ NEED TO FIX THIS
 			int counter = 0;
 			Node prev = tail;
 			Node current = head;
 			
-			if ((head==null && tail==null) && (head.next != head)) { //if linked list is greater than 1 element
+			if ((head!=null && tail!=null) && (head.next != head)) { //if linked list is greater than 1 element
 				prev = head;
 				current = prev.next;
 				counter++;
