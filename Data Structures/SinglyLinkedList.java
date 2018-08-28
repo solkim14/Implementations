@@ -18,23 +18,27 @@ public class SinglyLinkedList {
 		SinglyLinkedList list = new SinglyLinkedList();
 		
 		//tested addFirst and display
-		/**
 		list.addFirst(new Node(20));
 		list.display();
+		System.out.println("size = " + list.size());
 		list.addFirst(new Node(10));
 		list.display();
+		System.out.println("size = " + list.size());
 		list.addFirst(new Node(5));
 		list.display();
-		*/
+		System.out.println("size = " + list.size());
 		
 		//tested addLast and display
 		
 		list.addLast(new Node(1));
 		list.display();
+		System.out.println("size = " + list.size());
 		list.addLast(new Node(2));
 		list.display();
+		System.out.println("size = " + list.size());
 		list.addLast(new Node(3));
 		list.display();
+		System.out.println("size = " + list.size());
 		
 		
 		//tested removeFirst and display
@@ -50,12 +54,13 @@ public class SinglyLinkedList {
 		//tested removeLast and display
 		list.removeLast();
 		list.display();
+		System.out.println("size = " + list.size());
 		list.removeLast();
 		list.display();
+		System.out.println("size = " + list.size());
 		list.removeLast();
 		list.display();
-	
-		
+		System.out.println("size = " + list.size());
 	}
 	
 	/**
@@ -159,8 +164,21 @@ public class SinglyLinkedList {
 	* @return the size of the linked list
 	*/
 	public int size() {
-		//while linked list node does not equal the head
-		return 1; //dummy int
+		int size = 0;
+		Node countNode = head;
+		
+		if (head==null && tail==null) { //if empty
+			size = 0;
+		} else if (head == tail) { //if only one element in the linked list
+			size = 1;
+		} else {
+			size = 1;
+			while (countNode.next != head) { //find the second to last node
+				size++;
+				countNode = countNode.next;
+			}
+		}
+		return size;
 	}
 	
 	/**
