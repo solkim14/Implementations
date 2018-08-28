@@ -29,7 +29,7 @@ public class SinglyLinkedList {
 		System.out.println("size = " + list.size());
 		
 		//tested addLast and display
-		
+		/**
 		list.addLast(new Node(1));
 		list.display();
 		System.out.println("size = " + list.size());
@@ -39,7 +39,7 @@ public class SinglyLinkedList {
 		list.addLast(new Node(3));
 		list.display();
 		System.out.println("size = " + list.size());
-		
+		*/
 		
 		//tested removeFirst and display
 		/**
@@ -52,6 +52,7 @@ public class SinglyLinkedList {
 		*/
 		
 		//tested removeLast and display
+		/**
 		list.removeLast();
 		list.display();
 		System.out.println("size = " + list.size());
@@ -61,6 +62,17 @@ public class SinglyLinkedList {
 		list.removeLast();
 		list.display();
 		System.out.println("size = " + list.size());
+		*/
+		
+		//tested getNode()
+		/**
+		System.out.println(list.getNode(-1));
+		System.out.println(list.getNode(0).data);
+		System.out.println(list.getNode(1).data);
+		System.out.println(list.getNode(2).data);
+		System.out.println(list.getNode(3));
+		System.out.println(list.getNode(4));
+		*/
 	}
 	
 	/**
@@ -182,13 +194,37 @@ public class SinglyLinkedList {
 	}
 	
 	/**
-	* Returns the node at given index; if index does not exist prints "INDEX DOES NOT EXIST" and returns a null node: O(n)
+	* Returns the node at given index (first element at 0); if index does not exist prints "INDEX DOES NOT EXIST" and returns a null node: O(n)
 	*
 	* @param index the index of the node to be returned
 	* @return the node at the given index
 	*/
 	public Node getNode(int index) {
-		return null; //dummy node
+		int numNodes = 1;
+		Node iterateNode = null;
+		
+		if (index < 0) { //if index is negative then it doesn't exist
+			iterateNode = null;
+			System.out.println("That index doesn't exist!");
+		} else if (head==null && tail==null) { //if empty
+			iterateNode = null;
+			System.out.println("The linked list is empty, nothing to return!");
+		} else if (index == 0) { //if requesting the first element
+			iterateNode = head;
+		} else {
+			iterateNode = head.next;
+			while (iterateNode != head) { //find the node at the given index
+				if (numNodes == index) { //found it
+					return iterateNode;
+				}
+				iterateNode = iterateNode.next;
+				numNodes++;
+			}
+			//if it got through then the index requested is larger than the number of nodes
+			iterateNode = null;
+			System.out.println("Index too large! There are only " + numNodes + " nodes in the linked list.");
+		}
+		return iterateNode; //dummy node
 	}
 	
 	/**
