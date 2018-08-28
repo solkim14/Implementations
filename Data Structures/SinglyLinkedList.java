@@ -13,6 +13,31 @@ public class SinglyLinkedList {
 	private Node head;
 	private Node tail;
 
+	//TEST SINGLYLINKEDLIST
+	public static void main(String[] args) {
+		SinglyLinkedList list = new SinglyLinkedList();
+		
+		//tested addFirst and display
+		
+		list.addFirst(new Node(20));
+		list.display();
+		list.addFirst(new Node(10));
+		list.display();
+		list.addFirst(new Node(5));
+		list.display();
+		
+		
+		//tested addLast and display
+		
+		list.addLast(new Node(1));
+		list.display();
+		list.addLast(new Node(2));
+		list.display();
+		list.addLast(new Node(3));
+		list.display();
+		
+	}
+	
 	/**
 	* Insert node to the beginning of the linked list: O(1)
 	*
@@ -39,7 +64,16 @@ public class SinglyLinkedList {
 	* @return
 	*/
 	public void addLast(Node lastNode) {
-		//if its the only node
+		if (head==null && tail==null) { //if the linked list is empty
+			head = lastNode;
+			tail = lastNode;
+			head.next = tail;
+			tail.next = head;
+		} else {
+			tail.next = lastNode;
+			tail = lastNode;
+			tail.next = head;
+		}
 	}
 	
 	/**
@@ -49,8 +83,11 @@ public class SinglyLinkedList {
 	* @return
 	*/
 	public void removeFirst(Node endNode) {
-		//if empty
-		//if the only node
+		if (head==null && tail==null) { //if empty
+			System.out.println("Linked list is empty! Can't remove!");
+		} else {
+			
+		}
 	}
 	
 	/**
@@ -104,22 +141,11 @@ public class SinglyLinkedList {
 	public void display() {
 		Node printNode = head;
 		while(printNode != tail) {
-			System.out.println("Node: " + printNode.data);
+			System.out.print(printNode.data + ", ");
 			printNode = printNode.next;
 		}
-		System.out.println("Last Node: " + printNode.data);
-	}
-	
-	//TEST
-	public static void main(String[] args) {
-		SinglyLinkedList list = new SinglyLinkedList();
-		
-		list.addFirst(new Node(20));
-		list.display();
-		list.addFirst(new Node(10));
-		list.display();
-		list.addFirst(new Node(5));
-		list.display();
+		System.out.println(printNode.data); //last node
+		System.out.println(" head is " + head.data + ", tail is " + tail.data);
 	}
 }
 
