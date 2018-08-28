@@ -25,7 +25,7 @@ public class SinglyLinkedList {
 		list.display();
 		list.addFirst(new Node(5));
 		list.display();
-		
+		*/
 		
 		//tested addLast and display
 		
@@ -33,18 +33,26 @@ public class SinglyLinkedList {
 		list.display();
 		list.addLast(new Node(2));
 		list.display();
-		*/
 		list.addLast(new Node(3));
 		list.display();
 		
 		
-		//tested addLast and display
+		//tested removeFirst and display
+		/**
+		list.removeFirst();
+		list.display();
+		list.removeFirst();
+		list.display();
+		list.removeFirst();
+		list.display();
+		*/
 		
-		list.removeFirst();
+		//tested removeLast and display
+		list.removeLast();
 		list.display();
-		list.removeFirst();
+		list.removeLast();
 		list.display();
-		list.removeFirst();
+		list.removeLast();
 		list.display();
 	
 		
@@ -70,7 +78,7 @@ public class SinglyLinkedList {
 	}
 	
 	/**
-	* Add node to the end of the linked list: O(n)
+	* Add node to the end of the linked list: O(1)
 	*
 	* @param lastNode the node to add to the end of the linked list
 	* @return none
@@ -96,52 +104,52 @@ public class SinglyLinkedList {
 	*/
 	public Node removeFirst() {
 		Node firstNode = null;
-		
-		/**
+				
 		if (head==null && tail==null) { //if empty
 			System.out.println("Linked list is empty! Can't remove!");
-			throw new NullPointerException();
+			//System.out.println("test 1");
 		} else if (head == tail) { //if only one element in the linked list
 			head = tail = null;
+			//System.out.println("test 2");
 		} else {
+			//System.out.println("test 3");
 			firstNode = head;
 			head = head.next;
 			firstNode.next = null;
 			tail.next = head;
 		}
-		*/
-		
-		try {
-			if (head==null && tail==null) { //if empty
-				System.out.println("Linked list is empty! Can't remove!");
-				//System.out.println("test 1");
-			} else if (head.equals(tail)) { //if only one element in the linked list
-				head = tail = null;
-				//System.out.println("test 2");
-			} else {
-				//System.out.println("test 3");
-				firstNode = head;
-				head = head.next;
-				firstNode.next = null;
-				tail.next = head;
-			}
-		} catch (NullPointerException npEx) {
-			//System.out.println("test 4");
-			npEx.printStackTrace();
-		} finally {
-			return firstNode;
-		}
+		return firstNode;
 	}
 	
 	/**
 	* Remove the last node of the linked list: O(n)
 	*
-	* @param
-	* @return
+	* @param none
+	* @return the last node of the linked list removed
 	*/
-	public void removeLast() {
-		//if empty
-		//if the only node
+	public Node removeLast() {
+		Node lastNode = null;
+		Node findNode = head;
+		Node secondToLast = null;
+				
+		if (head==null && tail==null) { //if empty
+			System.out.println("Linked list is empty! Can't remove!");
+		} else if (head == tail) { //if only one element in the linked list
+			head = tail = null;
+		} else {
+			while (findNode != tail) { //find the second to last node
+				if (findNode.next == tail) { //found it
+					secondToLast = findNode;
+					break;
+				}
+				findNode = findNode.next;
+			}
+			lastNode = tail;
+			lastNode.next = null;
+			tail = secondToLast;
+			tail.next = head;
+		}
+		return lastNode;
 	}
 	
 	/**
